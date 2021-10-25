@@ -1,0 +1,47 @@
+name: Deploy - Build and push to Shared S. Account ECR
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: 'Release Number:'
+        required: true
+      environment:
+        description: 'Image Tag (dev, qa, prod)'
+        required: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.DEPLOYER_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.DEPLOYER_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR for Potenza
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: potenza
+        IMAGE_TAG: ${{ github.event.inputs.environment }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        #docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG --build-arg CONFIG_PATH="$(cat $CONFIG_PATH)" --build-arg IH_CONFIG_PATH="$(cat $IH_CONFIG_PATH)" .
+    # - name: Set release number
+    #  uses: invitation-homes/potenza@INTG-695-cicd-pipeline
+    #  with:
+    #    release-tag: ${{ github.event.inputs.relase }}
+    
