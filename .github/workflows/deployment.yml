@@ -17,5 +17,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
       with:
-        tag_name: ${{github.events.inputs.release}}
+        tag_name: ${{ github.events.inputs.release }}
         release_name: Release ${{ github.events.inputs.release }}
