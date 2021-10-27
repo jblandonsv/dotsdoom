@@ -13,5 +13,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
       with:
-        tag_name: ${{ github.event.inputs.release }}
+        tag_name: ${{ steps.getversion.outputs.version }}
         release_name: Release ${{ steps.getversion.outputs.version }}
