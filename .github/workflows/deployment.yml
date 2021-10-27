@@ -6,6 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Read VERSION file
+      id: lsversion
+      run: echo ":ls"
+    - name: Read VERSION file
       id: getversion
       run: echo "::set-output name=version::$(cat VERSION)"
     - name: Set release number
