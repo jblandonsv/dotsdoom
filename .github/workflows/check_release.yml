@@ -22,10 +22,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # Runs a single command using the runners shell
+      - name: Read VERSION file
+        id: readversion
+        run: echo "::set-output name=version::$(cat VERSION)"
       - uses: mukunku/tag-exists-action@v1.0.0
         id: checkTag
         with: 
-          tag: '1.0.2'
+          tag: ${{ steps.readversion.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: echo ${{ steps.checkTag.outputs.exists }}
