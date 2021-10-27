@@ -5,9 +5,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Read VERSION file
+    - name: LS Files
       id: lsversion
-      run: ls
+      run: echo "$(ls)"
     - name: Read VERSION file
       id: getversion
       run: echo "::set-output name=version::$(cat VERSION)"
