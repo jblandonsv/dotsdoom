@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Read VERSION file
       id: lsversion
-      run: echo ":ls"
+      run: ls
     - name: Read VERSION file
       id: getversion
       run: echo "::set-output name=version::$(cat VERSION)"
