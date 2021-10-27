@@ -28,7 +28,7 @@ jobs:
       - uses: mukunku/tag-exists-action@v1.0.0
         id: checkTag
         with: 
-          tag: ${{ steps.readversion.version }}
+          tag: ${{ steps.readversion.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: echo ${{ steps.checkTag.outputs.exists }}
