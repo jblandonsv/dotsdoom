@@ -5,6 +5,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: LS Files
       id: lsversion
       run: echo "$(ls)"
