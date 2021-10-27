@@ -28,5 +28,7 @@ jobs:
           tag: '1.0.2'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - run: echo ${{ steps.checkTag.outputs.exists }}
+      - name: Check Release does not exists
+        if: ${{ steps.checkTag.outputs.exists }}
+        run: exit 1
