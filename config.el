@@ -11,8 +11,12 @@
 
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(setq projectile-project-search-path '("~/proyectosFiverr/"))
+(setq projectile-project-search-path '("~/testlab/"))
 
+(after! lsp-rust
+  (setq lsp-rust-server 'rust-analyzer))
+
+;; (setq lsp-rust-server 'rust-analyzer)
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
@@ -30,7 +34,9 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; (setq doom-theme 'doom-molokai)
-(setq doom-theme 'doom-outrun-electric)
+;; (setq doom-theme 'doom-outrun-electric)
+;;(setq doom-theme 'zerodark)
+(setq doom-theme 'panda)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -60,7 +66,7 @@
 
 (use-package pyvenv
   :ensure t
-  :init (setenv "WORKON_HOME" "/opt/anaconda3/envs/")
+  ;; :init (setenv "WORKON_HOME" "/opt/anaconda3/envs/")
   :custom
   (pyvenv-mode 1))
 
@@ -81,19 +87,19 @@
 
 
 
-(defun fate-lsp-setup-python ()
-  "Microsoft Python Language Server does not have a syntax checker, setup one for it."
-  (progn
-    (require 'lsp-python-ms)
-    (lsp)
-    ;; https://github.com/flycheck/flycheck/issues/1762#issuecomment-626210720
-    ;; Do not let lsp hijack flycheck
-    (setq-local lsp-diagnostics-provider :none)
-    (setq-local flycheck-checker 'python-flake8)))
+;; (defun fate-lsp-setup-python ()
+;;   "Microsoft Python Language Server does not have a syntax checker, setup one for it."
+;;   (progn
+;;     (require 'lsp-python-ms)
+;;     (lsp)
+;;     ;; https://github.com/flycheck/flycheck/issues/1762#issuecomment-626210720
+;;     ;; Do not let lsp hijack flycheck
+;;     (setq-local lsp-diagnostics-provider :none)
+;;     (setq-local flycheck-checker 'python-flake8)))
 
 
-(use-package lsp-mode
-  :diminish lsp-mode
-  :commands (lsp lsp-deferred)
-  :hook
-  ((python-mode . fate-lsp-setup-python)))
+;; (use-package lsp-mode
+;;   :diminish lsp-mode
+;;   :commands (lsp lsp-deferred)
+;;   :hook
+;;   ((python-mode . fate-lsp-setup-python)))
