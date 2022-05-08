@@ -150,8 +150,8 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       ;; +(python +lsp)      ; Esta configuracion empezo a fallar por eso la siguiente linea
-       +(python +lsp-pyright)  ; no dejar que instale mspyls (si me ha funcionado)?? necesario instalar los lsp server manualmente pip install --user "python-language-server[all]"
+       +(python +lsp)      ; Esta configuracion empezo a fallar para mypysl por eso hay que instalar pysl EN EL VIRTUAL ENV https://pypi.org/project/python-language-server/
+       ;; +(python +lsp-pyright)  ; no dejar que instale mspyls (si me ha funcionado)?? necesario instalar los lsp server manualmente pip install --user "python-language-server[all]"
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;raku              ; the artist formerly known as perl6
