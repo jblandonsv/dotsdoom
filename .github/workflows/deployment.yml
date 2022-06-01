@@ -23,6 +23,9 @@ jobs:
       with:
         tag_name: ${{ steps.getversion.outputs.version }}
         release_name: Release ${{ steps.getversion.outputs.version }}
+  finalizando:
+    runs-on: ubuntu-latest
+    steps:
     - name: No Hay Error
       run: echo "NO HAY ERROR"
     - name: Si Hay Error
