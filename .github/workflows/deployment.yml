@@ -36,5 +36,4 @@ jobs:
     if: always() && needs.deploy.result == 'failure'
     steps:
     - name: Si Hay Error
-      if: failure()
       run: echo "Existe un Error"
