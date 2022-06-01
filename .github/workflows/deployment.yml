@@ -25,6 +25,7 @@ jobs:
         release_name: Release ${{ steps.getversion.outputs.version }}
   finalizando:
     runs-on: ubuntu-latest
+    needs: [deploy]
     steps:
     - name: No Hay Error
       run: echo "NO HAY ERROR"
