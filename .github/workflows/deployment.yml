@@ -36,4 +36,4 @@ jobs:
     if: always() && needs.deploy.result == 'failure'
     steps:
     - name: Si Hay Error
-      run: echo "Existe un Error"
+      run: echo "Existe un Error - ${{ github.event.inputs.version }}"
