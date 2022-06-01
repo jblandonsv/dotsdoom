@@ -21,4 +21,4 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            echo "${{ toJson(context) }}"
+            echo "${{ toJson(github.event) }}"
