@@ -1,7 +1,7 @@
 name: CI-CD Calls
 on:
   workflow_run:
-    workflows: [Check Release]
+    workflows: [Build Release]
     types:
       - completed
 
