@@ -1,6 +1,6 @@
 name: Build Release
 on:
-  workflow_dispatch
+  workflow_dispatch:
     inputs:
       version:
         description: "Relase/Version to use in production"
