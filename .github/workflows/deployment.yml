@@ -23,3 +23,8 @@ jobs:
       with:
         tag_name: ${{ steps.getversion.outputs.version }}
         release_name: Release ${{ steps.getversion.outputs.version }}
+    - name: No Hay Error
+      run: echo "NO HAY ERROR"
+    - name: Si Hay Error
+      if: failure()
+      run: echo "Existe un Error"
