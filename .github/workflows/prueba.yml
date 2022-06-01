@@ -17,4 +17,8 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     steps:
       - run: echo 'The triggering workflow failed'
-      - run: echo ${{ toJson(github.event.workflow_run) }}
+      - name: Prueba
+        uses: actions/github-script@v6
+        with:
+          script: |
+            echo "${{ toJson(context) }}"
